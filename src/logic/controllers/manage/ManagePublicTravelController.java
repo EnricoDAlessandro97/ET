@@ -22,6 +22,7 @@ public class ManagePublicTravelController {
 			travels = PublicTravelDao.retrieveMySavedGrTravels(username);
 			for(PublicTravel vg : travels) {
 				
+				PublicTravelBean viaggioGruppoBean = new PublicTravelBean();
 				HotelBean hotelBean = new HotelBean();
 				hotelBean.setBreakfast(vg.getHotelInfo().getBreakfast());
                 hotelBean.setHotelLink(vg.getHotelInfo().getHotelLink());
@@ -29,8 +30,7 @@ public class ManagePublicTravelController {
                 hotelBean.setNumRooms(String.valueOf(vg.getHotelInfo().getNumRooms()));
                 hotelBean.setPrice(vg.getHotelInfo().getPrice());
                 hotelBean.setStars(String.valueOf(vg.getHotelInfo().getStars()));
-                
-                PublicTravelBean viaggioGruppoBean = new PublicTravelBean();
+
                 viaggioGruppoBean.setCreator(vg.getCreator());
                 viaggioGruppoBean.setDestination(vg.getDestination());
                 viaggioGruppoBean.setDescription(vg.getDescription());
