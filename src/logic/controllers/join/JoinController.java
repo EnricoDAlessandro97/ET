@@ -1,4 +1,4 @@
-package logic.controllers;
+package logic.controllers.join;
 
 import java.util.ArrayList;
 import java.util.List;
