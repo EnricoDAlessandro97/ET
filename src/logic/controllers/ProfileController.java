@@ -225,9 +225,9 @@ public class ProfileController {
 	}
 	
 	public void changePhoto(String username, File file) throws DefaultPhotoException, SystemException {
-		String currentDirectoryProject = System.getProperty("user.dir");
+		String currentDirectoryProject = System.getProperty(USR_DIR);
     	String filename = username.concat("_").concat(file.getName());
-    	String savePath = currentDirectoryProject + File.separator + "WebContent" + File.separator + "Images" + File.separator + "DBImages" + File.separator +  filename;
+    	String savePath = currentDirectoryProject + File.separator + WEB_CONTENT + File.separator + IMAGES + File.separator + DB_IMAGES + File.separator +  filename;
     	UserDao.modifyPhoto(username, file, filename);
     	File photoUser = new File(savePath);
     	try {
@@ -243,7 +243,7 @@ public List<UserBean> retrieveFollowers(String username) throws SystemException 
 		List<User> followers;
 		List<UserBean> followersBean = new ArrayList<>();
 		String filename = "";
-		String currentDirectoryProject = System.getProperty("user.dir");
+		String currentDirectoryProject = System.getProperty(USR_DIR);
 		
 		followers = UserDao.retrieveFollowersByUsername(username);
 		for(User follower : followers) {
@@ -252,10 +252,11 @@ public List<UserBean> retrieveFollowers(String username) throws SystemException 
             userBean.setEmail(follower.getEmail());
             
             filename = follower.getPhoto();
-            if(filename.equals("")) 
-				userBean.setPhoto(filename);
+            if(filename.equals("")) {
+            	userBean.setPhoto(filename);
+            }
 			else {
-				filename = currentDirectoryProject.concat(File.separator).concat("WebContent").concat(File.separator).concat("Images").concat(File.separator).concat("DBImages").concat(File.separator).concat(filename);
+				filename = currentDirectoryProject.concat(File.separator).concat(WEB_CONTENT).concat(File.separator).concat(IMAGES).concat(File.separator).concat(DB_IMAGES).concat(File.separator).concat(filename);
 				userBean.setPhoto(filename);
 			}
 
